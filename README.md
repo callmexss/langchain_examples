@@ -1,2 +1,3 @@
-# langchain_examples
-Small examples built with langchain.
+# README
+
+Langchain Examples.
