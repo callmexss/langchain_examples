@@ -162,3 +162,4 @@ cython_debug/
 play*
 *_with_*.py
 ai_notes
+ai_bugs
