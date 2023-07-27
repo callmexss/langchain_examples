@@ -2,7 +2,7 @@
 Git Commit Message Generator
 
 ## 介绍
-这是一个使用 Python 编写的 Git Commit Message 生成器。它使用 OpenAI 的 GPT-4 模型，根据 git diff 信息自动生成恰当的 commit message。同时，它遵循一定的规范，包括新功能、修复Bug、文档更新、代码风格调整、代码重构、测试相关、构建过程或辅助工具的修改、性能优化、持续集成的配置或脚本更新、代码回退等。
+这是一个使用 Python 编写的 Git Commit Message 生成器。它使用 OpenAI 的 GPT-3.5 模型，根据 git diff 信息自动生成恰当的 commit message。同时，它遵循一定的规范，包括新功能、修复Bug、文档更新、代码风格调整、代码重构、测试相关、构建过程或辅助工具的修改、性能优化、持续集成的配置或脚本更新、代码回退等。
 
 ## 安装
 使用 pip 命令安装所需的第三方库：
