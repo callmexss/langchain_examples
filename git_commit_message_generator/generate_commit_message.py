@@ -56,7 +56,7 @@ chat_prompt = ChatPromptTemplate.from_messages(
 
 llm = ChatOpenAI(
     model="gpt-3.5-turbo-16k-0613",
-    temperature=1,
+    temperature=0,
     verbose=True,
     streaming=True,
     callbacks=[StreamingStdOutCallbackHandler()],
@@ -132,7 +132,7 @@ commit_message_context = TemplateContext(
         "```\n"
     ),
     "",
-    "使用英文生成 commit message，返回完整的 git 命令。",
+    "必须使用英文生成 commit message，返回完整可以直接运行的 git 命令。",
 )
 
 

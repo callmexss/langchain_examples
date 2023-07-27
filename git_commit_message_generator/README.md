@@ -7,7 +7,7 @@ Git Commit Message Generator
 ## 安装
 使用 pip 命令安装所需的第三方库：
 ```bash
-pip install shlex subprocess sys langchain rich tiktoken
+pip install langchain rich tiktoken
 ```
 
 ## 使用说明
