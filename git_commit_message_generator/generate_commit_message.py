@@ -55,8 +55,8 @@ chat_prompt = ChatPromptTemplate.from_messages(
 
 
 llm = ChatOpenAI(
-    model="gpt-4-0613",
-    temperature=0,
+    model="gpt-3.5-turbo-16k-0613",
+    temperature=1,
     verbose=True,
     streaming=True,
     callbacks=[StreamingStdOutCallbackHandler()],
