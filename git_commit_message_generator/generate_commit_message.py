@@ -105,10 +105,9 @@ def run(template_context: TemplateContext):
 
 
 def generate_git_commit_message(template_context: TemplateContext):
-    template_context.info = (
-        subprocess.check_output(shlex.split("git diff")) +
-        subprocess.check_output(shlex.split("git status"))
-    )
+    diff_info = subprocess.check_output(shlex.split("git diff"))
+    status_info = subprocess.check_output(shlex.split("git status"))
+    template_context.info = diff_info if diff_info else status_info
     response = run(template_context)
     print(response)
 
@@ -116,7 +115,7 @@ def generate_git_commit_message(template_context: TemplateContext):
 commit_message_context = TemplateContext(
     "一个 git commit message 生成器",
     (
-        "根据 INFO 标签里的 git diff 信息，生成恰当的 commit message\n"
+        "根据 INFO 标签里的 git diff 信息，生成恰当的英文 commit message\n"
         "请遵循下面的规范：\n"
         "```\n"
         "feat：新功能（feature） 用于描述新增的功能点或功能模块\n"
@@ -132,7 +131,7 @@ commit_message_context = TemplateContext(
         "```\n"
     ),
     "",
-    "必须使用英文生成 commit message，返回完整可以直接运行的 git 命令。",
+    "commit message 必须是全英文的，返回完整可以直接运行的 git 命令。",
 )
 
 
