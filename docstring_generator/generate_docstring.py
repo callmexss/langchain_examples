@@ -97,9 +97,7 @@ def run(template_context: TemplateContext):
             "extra": template_context.extra,
         }
     )
-    logger.info(
-        "\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}"
-    )
+    logger.info("\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}")
     return response
 
 
@@ -108,9 +106,7 @@ def write_to_file(filepath: Path, content: str):
         file.write(content)
 
 
-def generate_docstring_single_file(
-    path: str, template_context: TemplateContext
-):
+def generate_docstring_single_file(path: str, template_context: TemplateContext):
     path_obj = Path(path).absolute()
     folder = path_obj.parent
     output_path = folder / f"{path_obj.stem}_with_docstring.py"
@@ -123,10 +119,7 @@ def generate_docstring_single_file(
 
 generate_docstring_context = TemplateContext(
     "一个Python代码的docstring生成器",
-    (
-        "使用谷歌 docstring 风格给 INFO 标签里的代码中的函数和类生成对应的 docstring。"
-        "同时需要在函数签名中使用类型注解。"
-    ),
+    ("使用谷歌 docstring 风格给 INFO 标签里的代码中的函数和类生成对应的 docstring。" "同时需要在函数签名中使用类型注解。"),
     "",
     ("你只需要生成修改后的代码，不要额外的说明和解释。"),
 )

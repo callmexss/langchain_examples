@@ -58,17 +58,6 @@ chat_prompt = ChatPromptTemplate.from_messages(
 )
 
 
-llm = ChatOpenAI(
-    model="gpt-3.5-turbo-0613",
-    temperature=1,
-    verbose=True,
-    streaming=True,
-    callbacks=[StreamingStdOutCallbackHandler()],
-)
-
-chain = LLMChain(llm=llm, prompt=chat_prompt)
-
-
 class TemplateContext:
     def __init__(
         self,
@@ -97,6 +86,20 @@ def count_tokens(text: str) -> int:
 
 
 def run(template_context: TemplateContext):
+    model = (
+        "gpt-3.5-turbo-0613"
+        if count_tokens(template_context.prompt) < 3000
+        else "gpt-3.5-turbo-16k-0613"
+    )
+    llm = ChatOpenAI(
+        model=model,
+        temperature=1,
+        verbose=True,
+        streaming=True,
+        callbacks=[StreamingStdOutCallbackHandler()],
+    )
+
+    chain = LLMChain(llm=llm, prompt=chat_prompt)
     time.sleep(SECONDS_PER_REQUEST)
     response = chain.run(
         {
@@ -106,9 +109,7 @@ def run(template_context: TemplateContext):
             "extra": template_context.extra,
         }
     )
-    logger.info(
-        "\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}"
-    )
+    logger.info("\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}")
     return response
 
 
@@ -146,16 +147,9 @@ def scan_code_repo(path: str, pattern: str, template_context: TemplateContext):
 
 repo_scan_context = TemplateContext(
     "一个代码扫描助手。",
-    (
-        "扫描 INFO 标签里的代码并给出解释。"
-        "你应该按照函数和类的级别进行解释。"
-        "如果代码中有值得highlight的亮点，也可以单独说明。"
-    ),
+    ("扫描 INFO 标签里的代码并给出解释。" "你应该按照函数和类的级别进行解释。" "如果代码中有值得highlight的亮点，也可以单独说明。"),
     "",
-    (
-        "请指出代码中有BUG或者错误，"
-        "请使用中文回复，我的 python 属于进阶水平，可以忽略简单的解释说明。"
-    ),
+    ("请指出代码中有BUG或者错误，" "请使用中文回复，我的 python 属于进阶水平，可以忽略简单的解释说明。"),
 )
 
 if __name__ == "__main__":

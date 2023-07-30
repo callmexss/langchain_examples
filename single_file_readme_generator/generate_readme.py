@@ -97,9 +97,7 @@ def run(template_context: TemplateContext):
             "extra": template_context.extra,
         }
     )
-    logger.info(
-        "\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}"
-    )
+    logger.info("\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}")
     return response
 
 
@@ -121,10 +119,7 @@ def generate_readme_single_file(path: str, template_context: TemplateContext):
 
 readme_generate_context = TemplateContext(
     "一个Python项目的README生成助手",
-    (
-        "根据 INFO 标签里的代码生成对应的 README。包括以下内容："
-        "# 项目名称" "## 介绍" "## 安装" "## 使用说明"
-    ),
+    ("根据 INFO 标签里的代码生成对应的 README。包括以下内容：" "# 项目名称" "## 介绍" "## 安装" "## 使用说明"),
     "",
     (
         "1. 使用 markdown 语法。"

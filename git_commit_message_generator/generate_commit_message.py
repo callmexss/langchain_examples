@@ -98,9 +98,7 @@ def run(template_context: TemplateContext):
             "extra": template_context.extra,
         }
     )
-    logger.info(
-        "\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}"
-    )
+    logger.info("\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}")
     return response
 
 

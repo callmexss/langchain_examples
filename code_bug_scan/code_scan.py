@@ -106,9 +106,7 @@ def run(template_context: TemplateContext):
             "extra": template_context.extra,
         }
     )
-    logger.info(
-        "\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}"
-    )
+    logger.info("\ntotal tokens:" f"{count_tokens(template_context.prompt + response)}")
     return response
 
 
@@ -146,10 +144,7 @@ def scan_code_repo(path: str, pattern: str, template_context: TemplateContext):
 
 repo_scan_context = TemplateContext(
     "一个代码BUG扫描助手。",
-    (
-        "扫描 INFO 标签里的代码并发现BUG和潜在的风险。"
-        "帮助我提升代码质量和系统的安全性。"
-    ),
+    ("扫描 INFO 标签里的代码并发现BUG和潜在的风险。" "帮助我提升代码质量和系统的安全性。"),
     "",
     "",
 )
