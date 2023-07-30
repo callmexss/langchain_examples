@@ -103,7 +103,7 @@ def run(template_context: TemplateContext):
 
 
 def generate_git_commit_message(template_context: TemplateContext):
-    diff_info = subprocess.check_output(shlex.split("git diff"))
+    diff_info = subprocess.check_output(shlex.split("git diff HEAD"))
     status_info = subprocess.check_output(shlex.split("git status"))
     template_context.info = diff_info if diff_info else status_info
     response = run(template_context)
